@@ -70,7 +70,7 @@ def display_results(pkmn, pkmn2, pkmn3=Pokemon(main_type=pkmn_type['none'], sub_
     :oaram core_size: int
     :return: int
     """
-    add_count = 0                                   # Used for match_count and ensures accurate counting of matches
+    add_count = 0                            # Used for match_count and ensures accurate counting of matches
     poke1def = pkmn.resist.union(pkmn.immune)
     poke2def = pkmn2.resist.union(pkmn2.immune)
     poke3def = pkmn3.resist.union(pkmn3.immune)
