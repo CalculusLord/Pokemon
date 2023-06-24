@@ -136,7 +136,6 @@ def display_results(pkmn, pkmn2, pkmn3=Pokemon(main_type=pkmn_type['none'], sub_
             print('\tOverlap 2:\t', pkmn.weak.intersection(pkmn2.weak))
             if core_size == 3 and pkmn3.what_type != set():
                 print('\tOverlap 3:\t', pkmn.weak.intersection(pkmn3.weak))
-
     if show_stats == 'yes' or show_stats == 'pkmn2' or show_stats == 'pkmn1&2' or show_stats == 'pkmn2&3':
         print('\n\t', type_list)
         print('\t---------------')
@@ -159,7 +158,6 @@ def display_results(pkmn, pkmn2, pkmn3=Pokemon(main_type=pkmn_type['none'], sub_
             print('\tOverlap 1:\t', pkmn2.weak.intersection(pkmn.weak))
             if core_size == 3 and pkmn3.what_type != set():
                 print('\tOverlap 3:\t', pkmn2.weak.intersection(pkmn3.weak))
-
     if core_size == 3 and pkmn3.what_type != set():
         if show_stats == 'yes' or show_stats == 'pkmn3' or show_stats == 'pkmn1&3' or show_stats == 'pkmn2&3':
             print('\n\t', list(pkmn3.what_type))
@@ -180,7 +178,6 @@ def display_results(pkmn, pkmn2, pkmn3=Pokemon(main_type=pkmn_type['none'], sub_
             if show_shared == 'yes':
                 print('\tOverlap 1:\t', pkmn3.weak.intersection(pkmn.weak))
                 print('\tOverlap 2:\t', pkmn3.weak.intersection(pkmn2.weak))
-
     print('END OF SUMMARY\n')
     return add_count
 
