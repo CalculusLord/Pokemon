@@ -10,7 +10,7 @@
 #   Version Changelog
 #   2023-06-24: version 1.0 completed
 #   and comments added
-#   3023-06-24: version 1.1 fixed issue
+#   3023-06-25: version 1.1 fixed issue
 #   with depreciated value called
 #   exact_no_shared_weaks
 #   -----------------------------------
