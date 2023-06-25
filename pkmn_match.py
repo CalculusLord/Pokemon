@@ -1,7 +1,7 @@
 #   -----------------------------------
 #   Written by Nathanael J. Reynolds
 #   name = Pokemon Match
-#   version = 1.0
+#   version = 1.1
 #   version_year = 2023
 #   Description: Matches 2 or 3 Pokemon
 #   based on specified parameters for
@@ -10,6 +10,9 @@
 #   Version Changelog
 #   2023-06-24: version 1.0 completed
 #   and comments added
+#   3023-06-24: version 1.1 fixed issue
+#   with depreciated value called
+#   exact_no_shared_weaks
 #   -----------------------------------
 
 from pokedex import *
