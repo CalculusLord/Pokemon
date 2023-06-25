@@ -17,31 +17,31 @@ from pokedex import *
 #   ----------------
 #   User Parameters
 #   ---------------
-main_type = 'steel'                         # Types are not case-sensitive but must be included in quotes
-sub_type = 'grass'                          # For no type on sub_type input: 'none' or leave quotes blank
+main_type = 'water'                          # Types are not case-sensitive but must be included in quotes
+sub_type = 'poison'                          # For no type on sub_type input: 'none' or leave quotes blank
 
 #   Search Parameters
 #   -----------------
-search = 'no'                               # Toggles searching for a specific type match or browsing for matches
-no_of_searches = 2                          # How many specific Pokemon to look up
-search_main = 'rock'
-search_sub = 'poison'
+search = 'yes'                               # Toggles searching for a specific type match or browsing for matches
+no_of_searches = 1.                          # How many specific Pokemon to look up
+search_main = 'flying'
+search_sub = 'ground'
 search2_main = 'water'
 search2_sub = 'poison'
 
 #   Algorithm Parameters
 #   --------------------
-core_size = 2                               # Size of team core to construct (can be 2 or 3)
+core_size = 3                               # Size of team core to construct (can be 2 or 3)
 exact_no_of_cores = 'yes'                   # Include 2 cores in 3 core queries
 
 #   First Match Parameters
-shared_weaknesses = 1                       # Number of weaknesses shared between queried Pokemon and first match
-unchecked_weaknesses = 1                    # Number of weaknesses not covered by a partner's resistance
+shared_weaknesses = 0                       # Number of weaknesses shared between queried Pokemon and first match
+unchecked_weaknesses = 0                    # Number of weaknesses not covered by a partner's resistance
 exact_no_of_shared_weaks = 'no'             # Toggles if shared_weaknesses values exact or allows less than threshold
 are_no_of_unchecked_weaks_mutual = 'no'     # Checks if one or both Pokemon have a weakness unaddressed by partner
 
 #   Second Match Parameters
-trio_shared_weaks = 2
+trio_shared_weaks = 1
 trio_unchecked_weaks = 1
 exact_no_of_trio_share_weaks = 'no'
 is_trio_unchecked_mutual = 'no'
@@ -278,7 +278,7 @@ def second_match(pkmn1, type_list):
             pkmn12_weaks = pkmn1.weak.intersection(pkmn2.weak)
             pkmn13_weaks = pkmn1.weak.intersection(pkmn3.weak)
             pkmn23_weaks = pkmn2.weak.intersection(pkmn3.weak)
-            if exact_no_of_trio_share_weaks == 'yes' and exact_no_of_unchecked == 'yes':
+            if exact_no_of_trio_share_weaks == 'yes':
                 weak_cond = len(pkmn12_weaks) == shared_weaknesses and \
                             ((len(pkmn13_weaks) == 0 and len(pkmn23_weaks) == trio_shared_weaks - shared_weaknesses) or\
                              (len(pkmn13_weaks) == trio_shared_weaks - shared_weaknesses and len(pkmn23_weaks) == 0) or\
@@ -348,7 +348,6 @@ if __name__ == '__main__':
             second_main = second[0]
             second_sub = second[second_len - 1]
             pkmn3 = Pokemon(pkmn_type[second_main], pkmn_type[second_sub])
-            display_results(pkmn, pkmn2, pkmn3)
             match_count = match_count + display_results(pkmn, pkmn2, pkmn3)  # Odd notation ensures correct counting
             count = match_count - 1
     elif search == 'no' and core_size == 3:
