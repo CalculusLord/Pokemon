@@ -1,7 +1,7 @@
 #   -----------------------------------
 #   Written by Nathanael J. Reynolds
 #   name = Pokemon Match
-#   version = 1.1
+#   version = 1.2
 #   version_year = 2023
 #   Description: Matches 2 or 3 Pokemon
 #   based on specified parameters for
@@ -13,6 +13,8 @@
 #   2023-06-25: version 1.1 fixed issue
 #   with depreciated value called
 #   exact_no_shared_weaks
+#   2023-07-04: version 1.2 single
+#   Pokemon lookup added
 #   -----------------------------------
 
 from pokedex import *
@@ -20,42 +22,42 @@ from pokedex import *
 #   ----------------
 #   User Parameters
 #   ---------------
-main_type = 'water'                          # Types are not case-sensitive but must be included in quotes
-sub_type = 'poison'                          # For no type on sub_type input: 'none' or leave quotes blank
+main_type = 'fairy'                          # Types are not case-sensitive but must be included in quotes
+sub_type = 'fighting'                          # For no type on sub_type input: 'none' or leave quotes blank
 
 #   Search Parameters
 #   -----------------
-search = 'yes'                               # Toggles searching for a specific type match or browsing for matches
-no_of_searches = 1.                          # How many specific Pokemon to look up
+search = 'no'                               # Toggles searching for a specific type match or browsing for matches
+no_of_searches = 1                          # How many specific Pokemon to look up
 search_main = 'flying'
 search_sub = 'ground'
-search2_main = 'water'
-search2_sub = 'poison'
+search2_main = 'psychic'
+search2_sub = 'dark'
 
 #   Algorithm Parameters
 #   --------------------
-core_size = 3                               # Size of team core to construct (can be 2 or 3)
+core_size = 1                               # Size of team core to construct (can be 1, 2 or 3)
 exact_no_of_cores = 'yes'                   # Include 2 cores in 3 core queries
 
 #   First Match Parameters
 shared_weaknesses = 0                       # Number of weaknesses shared between queried Pokemon and first match
-unchecked_weaknesses = 0                    # Number of weaknesses not covered by a partner's resistance
+unchecked_weaknesses = 1                    # Number of weaknesses not covered by a partner's resistance
 exact_no_of_shared_weaks = 'no'             # Toggles if shared_weaknesses values exact or allows less than threshold
 are_no_of_unchecked_weaks_mutual = 'no'     # Checks if one or both Pokemon have a weakness unaddressed by partner
 
 #   Second Match Parameters
-trio_shared_weaks = 1
-trio_unchecked_weaks = 1
+trio_shared_weaks = 0
+trio_unchecked_weaks = 0
 exact_no_of_trio_share_weaks = 'no'
 is_trio_unchecked_mutual = 'no'
 
 #   Display Parameters
 #   ------------------
-show_stats = 'no'                           # Input: yes, pkmn1, pkmn2, pkmn3, pkmn1&2, pkmn1&3, pkmn2&3, or no
+show_stats = 'pkmn1'                           # Input: yes, pkmn1, pkmn2, pkmn3, pkmn1&2, pkmn1&3, pkmn2&3, or no
 show_weakness = 'yes'                       # Displays weaknesses
-show_resistance = 'no'                      # Displays resistances and immunities
-show_covered = 'no'                         # Shows weaknesses og Pokemon covered by their partner(s) resistance
-show_unchecked = 'no'                       # Show weaknesses unaddressed by partner resistance
+show_resistance = 'yes'                      # Displays resistances and immunities
+show_covered = 'yes'                         # Shows weaknesses og Pokemon covered by their partner(s) resistance
+show_unchecked = 'yes'                       # Show weaknesses unaddressed by partner resistance
 show_shared = 'yes'                         # Displays weaknesses Pokemon share with their partner
 
 
@@ -63,7 +65,9 @@ show_shared = 'yes'                         # Displays weaknesses Pokemon share 
 #   Functions
 #   ---------------------
 
-def display_results(pkmn, pkmn2, pkmn3=Pokemon(main_type=pkmn_type['none'], sub_type=pkmn_type['none']),
+def display_results(pkmn,
+                    pkmn2=Pokemon(main_type=pkmn_type['none'], sub_type=pkmn_type['none']),
+                    pkmn3=Pokemon(main_type=pkmn_type['none'], sub_type=pkmn_type['none']),
                     core_size=core_size):
     """
     Function takes in pokemon and displays the results of the search
@@ -375,7 +379,6 @@ if __name__ == '__main__':
                     combo_list.append(combo)
                 else:
                     pass
-
     elif search == 'no' and core_size == 2:
         for i in range(0, len(first_matches)):
             pkmn2_id = list(first_matches[i])  # Grabs i-th Pokemon from first_matches
@@ -383,5 +386,7 @@ if __name__ == '__main__':
             pkmn2 = Pokemon(pkmn_type[pkmn2_id[0]], pkmn_type[pkmn2_id[last_index]])
             match_count = match_count + display_results(pkmn, pkmn2)
             count = match_count - 1
+    elif core_size == 1:
+        display_results(pkmn)
 
     print(count, 'MATCHES FOUND')
