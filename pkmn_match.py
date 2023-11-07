@@ -80,7 +80,7 @@ exact_no_of_shared_weaks = 'no'          # (yes/no) Toggles if shared_weaknesses
 #   -----------------
 #   Search Parameters
 #   ~~~~~~~~~~~~~~~~~
-search_pkmn_3 = 'yes'                   # Turning on seach for pkmn 3 also turns on search for pkmn 2
+search_pkmn_3 = 'yes'                   # Turning on search for pkmn 3 also turns on search for pkmn 2
 pkmn_3_main = 'flying'
 pkmn_3_sub = 'fire'
 #   Algorithmic Matching Parameters
